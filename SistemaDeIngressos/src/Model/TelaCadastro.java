@@ -4,6 +4,10 @@
  */
 package Model;
 
+import Model.MetodoValidaCPF;
+import Model.TelaLogin;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ryan
@@ -57,6 +61,11 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         BtnCadastrar.setContentAreaFilled(false);
         BtnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCadastrarActionPerformed(evt);
+            }
+        });
         getContentPane().add(BtnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 160, 50));
 
         txtCPF.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
@@ -87,6 +96,21 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCPFActionPerformed
+
+    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+       String cpf = txtCPF.getText();
+        MetodoValidaCPF validator = new MetodoValidaCPF(cpf);
+        TelaLogin telaLogin = new TelaLogin();
+        
+        if (validator.validaCPF()) {
+            telaLogin.setVisible(true);         
+        } else {
+            JOptionPane.showMessageDialog(this, "CPF inválido!");
+            telaLogin.setVisible(false);
+        }
+                       
+    }//GEN-LAST:event_BtnCadastrarActionPerformed
+                                             
 
     /**
      * @param args the command line arguments
